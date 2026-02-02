@@ -16,4 +16,6 @@ spring:
     database-platform: "org.hibernate.dialect.MariaDBDialect"
   datasource:
     driver-class-name: "org.mariadb.jdbc.Driver"
-    url: ""
+    username: "lux"
+    password: "mauer137"
+    url: "jdbc:mariadb://127.0.0.1:3306/mtg_db"
