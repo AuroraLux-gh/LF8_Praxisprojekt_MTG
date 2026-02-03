@@ -2,6 +2,7 @@ package com.lux.LF8MTG.controller;
 
 import com.lux.LF8MTG.Deck;
 import com.lux.LF8MTG.DeckDTO;
+import com.lux.LF8MTG.DeckMitKarteDTO;
 import com.lux.LF8MTG.DeckService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,10 @@ public class DeckController {
     @GetMapping("/{id}")
     public DeckDTO getDeck(@PathVariable int id) {
         return deckService.getById(id);
+    }
+
+    @GetMapping("/{id}/karten")
+    public DeckMitKarteDTO getDeckMitKarte(@PathVariable int id) {
+        return deckService.getDeckMitKarte(id);
     }
 }

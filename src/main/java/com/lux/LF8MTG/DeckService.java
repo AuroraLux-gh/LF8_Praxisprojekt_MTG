@@ -12,6 +12,27 @@ public class DeckService {
 
     private final DeckRepository deckRepository;
 
+    public DeckMitKarteDTO getDeckMitKarte(Integer deck_id) {
+        Deck deck = deckRepository.findById(deck_id)
+                .orElseThrow(() -> new RuntimeException("Deck not found"));
+
+        List<KarteDTO> karten = deck.getDeckKarten()
+                .stream()
+                .map(DeckKarte::getKarte)
+                .map(k -> new KarteDTO(
+                        k.getKarten_id(),
+                        k.getName(),
+                        k.getBeschreibung()
+                ))
+                .toList();
+
+        return new DeckMitKarteDTO(
+                deck.getDeck_id(),
+                deck.getName(),
+                karten
+        );
+    }
+
     public Deck createDeck(String name) {
         Deck deck = Deck.builder().name(name).build();
         return deckRepository.save(deck);
